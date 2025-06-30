@@ -1,0 +1,344 @@
+        /* --- Reset básico --- */
+        body, h1, h5, p, div {
+            margin: 0; padding: 0; box-sizing: border-box;
+        }
+        body {
+    background: #0b121a url('assets/gback.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #a8cbd1;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 30px 20px;
+    user-select: none;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    animation: pulseBackground 12s infinite ease-in-out;
+    
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('assets/gback.jpg') no-repeat center center;
+    background-size: cover;
+    z-index: -2; /* Detrás de otros efectos */
+}
+
+/* 2. Líneas de escaneo (estilo monitor CRT) */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 255, 255, 0.05) 0.5%,
+        transparent 1%
+    );
+    pointer-events: none;
+    z-index: -1;
+    animation: scanLines 6s linear infinite;
+}
+
+/* 3. Distorsión de "Glitch" aleatorio (para eventos importantes) */
+@keyframes glitchEffect {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    60% { transform: translate(-1px, 1px); }
+    100% { transform: translate(0); }
+}
+
+/* 4. Animación de pulsación (respiración) para el fondo */
+@keyframes pulseBackground {
+    0% { background-color: #0b121a; }
+    50% { background-color: #0e1822; }
+    100% { background-color: #0b121a; }
+}
+
+/* 5. Interferencia Combine (efecto estático) */
+@keyframes combineStatic {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.1; }
+    100% { opacity: 0.3; }
+}
+
+/* 6. Líneas de escaneo en movimiento */
+@keyframes scanLines {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(100%); }
+}
+
+/* === Scrollbar estilo Combine (opcional) === */
+::-webkit-scrollbar {
+    width: 8px;
+    background: rgba(10, 20, 30, 0.7);
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #00b4ff, #0062ff);
+    border-radius: 4px;
+}
+
+        a {
+            color: #66d9ff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #22445c;
+            margin: 25px 0;
+        }
+        /* --- Contenedor general --- */
+        .background {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #121f2ecc;
+            border: 1px solid #2277bb;
+            border-radius: 10px;
+            padding: 25px 30px 40px 30px;
+            box-shadow: 0 0 12px #0ff3ff66;
+        }
+
+        /* --- Encabezados --- */
+        .title {
+            position: relative;
+            margin-bottom: 25px;
+        }
+        .title h1 {
+            color: #00c7ff;
+            font-weight: 700;
+            font-size: 1.9rem;
+            text-align: center;
+            letter-spacing: 0.03em;
+            text-shadow: 0 0 7px #00c7ffaa;
+        }
+        .title h5 {
+            position: absolute;
+            top: 10px;
+            left: 40px;
+            font-weight: 400;
+            font-style: italic;
+            font-size: 1rem;
+            color: #6699aa;
+            user-select: text;
+        }
+        .title a {
+            position: absolute;
+            top: 30px;
+            right: 60px;
+            font-size: 0.85rem;
+            color: #66d9ffcc;
+        }
+        .title .update-date {
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: #77baffcc;
+            font-style: italic;
+            text-align: center;
+            letter-spacing: 0.05em;
+        }
+
+        /* --- Subtítulos principales --- */
+        .subtitles {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #00aaff;
+            margin: 40px 0 15px 0;
+            text-align: center;
+            text-shadow: 0 0 6px #00aaff99;
+            user-select: text;
+        }
+        .subtitles img {
+            vertical-align: middle;
+            margin: 0 8px;
+            filter: drop-shadow(0 0 1px #0077aa);
+        }
+
+        /* --- Categorías (más pequeñas) --- */
+        .category {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #44bbff;
+            margin-bottom: 10px;
+            text-shadow: 0 0 5px #44bbffaa;
+        }
+
+        /* --- Iconos para listas --- */
+        .list-icon {
+            vertical-align: middle;
+            margin-right: 8px;
+            filter: drop-shadow(0 0 1px #cc0000);
+            width: 18px;
+            height: 18px;
+        }
+
+        /* --- Listas (uso <br> manteniendo estructura, pero mejor visual) --- */
+        .rule-item {
+            color: #aacfe8;
+            font-size: 0.95rem;
+            margin: 6px 0;
+            user-select: text;
+            line-height: 1.4;
+            display: block;
+            padding-left: 28px;
+            position: relative;
+        }
+        .rule-item img {
+            position: absolute;
+            left: 0;
+            top: 2px;
+            width: 18px;
+            height: 18px;
+            filter: drop-shadow(0 0 1px #cc0000);
+        }
+
+        /* --- Subsubtitles (secciones más pequeñas dentro de secciones) --- */
+        .subsubtitles {
+            color: #33c3ff;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 35px;
+            margin-bottom: 12px;
+            text-shadow: 0 0 5px #33c3ffaa;
+            user-select: text;
+        }
+        .subsubsubtitles, .subsubsubotasubtitles, .subsubsubcwusubtitles {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #66d9ffcc;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            user-select: text;
+        }
+
+        /* --- Códigos de ciudad con colores y bordes --- */
+        .codeyellow, .codeorange, .codered, .codegray {
+            margin: 28px 0 12px 0;
+            padding: 8px 14px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            text-align: center;
+            user-select: text;
+            text-shadow: 0 0 8px #00000088;
+        }
+        .codeyellow {
+            color: #ffe066;
+            background-color: #3a3a00bb;
+            border: 1px solid #ffe066cc;
+            box-shadow: 0 0 10px #ffe066aa;
+        }
+        .codeorange {
+            color: #ff9933;
+            background-color: #4a2a00cc;
+            border: 1px solid #ff9933cc;
+            box-shadow: 0 0 12px #ff9933cc;
+        }
+        .codered {
+            color: #ff4444;
+            background-color: #440000cc;
+            border: 1px solid #ff4444cc;
+            box-shadow: 0 0 14px #ff4444cc;
+        }
+        .codegray {
+            color: #cccccc;
+            background-color: #222222cc;
+            border: 1px solid #999999cc;
+            box-shadow: 0 0 8px #999999bb;
+        }
+
+        /* --- Footer especial --- */
+        .footer {
+            color: #00bcd4;
+            font-style: italic;
+            font-size: 16px;
+            font-family: 'Ubuntu', monospace;
+            text-align: center;
+            letter-spacing: 0.3px;
+            line-height: 1.6;
+            margin-top: 40px;
+            user-select: text;
+            text-shadow:
+                0 0 3px #00bcd4,
+                0 0 8px #00e5ff88;
+        }
+
+        /* --- Imagen logo centrada --- */
+        img.cmblogo {
+            display: block;
+            margin: 35px auto 30px auto;
+            width: 512px;
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 14px #00bcd4aa;
+        }
+
+        /* --- Textos destacados en negrita --- */
+        strong {
+            color: #33ffff;
+        }
+
+        /* --- Textos en cursiva --- */
+        em {
+            color: #a0e9ff;
+        }
+
+        @media (max-width: 720px) {
+            .background {
+                padding: 20px 15px 30px 15px;
+            }
+            .title h1 {
+                font-size: 1.5rem;
+            }
+            .title h5 {
+                font-size: 0.9rem;
+                left: 20px;
+            }
+            .title a {
+                top: 10px;
+                right: 20px;
+                font-size: 0.8rem;
+            }
+            .subtitles {
+                font-size: 1.1rem;
+            }
+            .subsubtitles {
+                font-size: 1rem;
+            }
+            .rule-item {
+                font-size: 0.9rem;
+                padding-left: 24px;
+            }
+            img.cmblogo {
+                width: 100%;
+            }
+        }
+
+:not([class]):not(img):not(.background) {
+    color: #a1c9f1; /* azul claro, suave */
+    font-weight: 500;
+    font-family: 'Ubuntu Mono', monospace;
+    background-color: rgba(161, 201, 241, 0.12); /* fondo muy sutil */
+    border-left: 2px solid #5a8ddb; /* borde azul frío, discreto */
+    padding-left: 5px;
+    transition: background-color 0.25s ease;
+}
+
+:not([class]):not(img):not(.background) {
+    background-color: rgba(90, 141, 219, 0.2);
+    cursor: default;
+}
